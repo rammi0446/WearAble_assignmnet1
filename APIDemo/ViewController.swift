@@ -125,6 +125,19 @@ class ViewController: UIViewController, WCSessionDelegate {
     
     @IBAction func buttonPressed(_ sender: Any) {
         print("button pressed")
+        
+        // check if the watch is paired / accessible
+        if (WCSession.default.isReachable) {
+            // construct the message you want to send
+            // the message is in dictionary
+            let message = ["name": "jenelle"]
+            // send the message to the watch
+            WCSession.default.sendMessage(message, replyHandler: nil)
+        }
+        else {
+            print("PHONE: Cannot find the watch")
+        }
+        
     }
     
 
