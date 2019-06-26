@@ -19,6 +19,19 @@ class Page1InterfaceController: WKInterfaceController {
     @IBOutlet var tableViewThing: WKInterfaceTable!
     
     
+    // MARK: Data source
+    var personDataList = [
+        "pritesh",
+        "patel",
+        "p@gmail.com",
+        "45.0",
+        "-234.2",
+        "ppatel",
+        "1234"
+    ]
+    
+    
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -28,6 +41,20 @@ class Page1InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        // 1. Tell watch how many rows you want
+        self.tableViewThing.setNumberOfRows(
+            self.personDataList.count, withRowType:"myRow"
+        )
+        
+        // 2. Tell watch what data goes in each row
+        for (index, data) in self.personDataList.enumerated() {
+            let row = self.tableViewThing.rowController(at: index) as! RowController
+            row.outputLabel.setText(data)
+        }
+        
+        
+        
     }
 
     override func didDeactivate() {
