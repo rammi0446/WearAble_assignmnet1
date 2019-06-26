@@ -9,14 +9,29 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import WatchConnectivity
 
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
 
     
+    // MARK: Outlets
     @IBOutlet weak var outputLabel: UILabel!
     
     
+    
+    // MARK: Default functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -90,6 +105,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    // MARK: Actions
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+        print("button pressed")
+    }
+    
 
 }
 

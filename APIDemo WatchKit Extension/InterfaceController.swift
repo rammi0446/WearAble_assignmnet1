@@ -10,8 +10,13 @@ import WatchKit
 import Foundation
 import Alamofire
 import SwiftyJSON
+import WatchConnectivity
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
     
     // MARK: Outlet
     // ---------------
