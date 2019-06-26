@@ -36,9 +36,26 @@ class Page1InterfaceController: WKInterfaceController, WCSessionDelegate {
          "password":
          }
         */
+        self.personDataList = [
+            message["lastName"] as! String,
+            message["firstName"] as! String,
+            message["email"] as! String,
+            message["lat"] as! String,
+            message["lng"] as! String,
+            message["username"] as! String,
+            message["password"] as! String
+        ]
         
+        // 1. Tell watch how many rows you want
+        self.tableViewThing.setNumberOfRows(
+            self.personDataList.count, withRowType:"myRow"
+        )
         
-        
+        // 2. Tell watch what data goes in each row
+        for (index, data) in self.personDataList.enumerated() {
+            let row = self.tableViewThing.rowController(at: index) as! RowController
+            row.outputLabel.setText(data)
+        }
         
         
         
