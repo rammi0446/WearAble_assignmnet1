@@ -98,6 +98,21 @@ class ViewController: UIViewController, WCSessionDelegate {
 //            // 3. Show the data in the user interface
 //            self.outputLabel.text = "IP Address: \(origin)"
         }
+    
+    
+        // Does your iPhone support "talking to a watch"?
+        // If yes, then create the session
+        // If no, then output error message
+        if (WCSession.isSupported()) {
+            print("PHONE: Phone supports WatchConnectivity!")
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
+        else {
+            print("PHONE: Phone does not support WatchConnectivity")
+        }
+    
     }
 
     override func didReceiveMemoryWarning() {
