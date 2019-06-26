@@ -8,16 +8,53 @@
 
 import WatchKit
 import Foundation
+import WatchConnectivity
 
-
-class Page1InterfaceController: WKInterfaceController {
-
+class Page1InterfaceController: WKInterfaceController, WCSessionDelegate {
+    
+    
+    // MARK: Required function for WCSessionDelegate
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        
+        // output a debug message to the terminal
+        print("WATCH: Got a message!")
+        print(message)
+        /*
+         
+         message = {
+         "lastname":"cat",
+         "firstname":"blue"
+         "email":
+         "lat":
+         "lng"
+         "username":
+         "password":
+         }
+        */
+        
+        
+        
+        
+        
+        
+        
+        // update the message with a label
+        self.phoneMessageLabel.setText("\(message)")
+    }
+    
+    
     // MARK: Outlets
     // ----------
-    
     //outlet for the table
     @IBOutlet var tableViewThing: WKInterfaceTable!
     
+    // outlet for label to hold messages from phone
+    @IBOutlet var phoneMessageLabel: WKInterfaceLabel!
     
     // MARK: Data source
     var personDataList = [
@@ -41,6 +78,19 @@ class Page1InterfaceController: WKInterfaceController {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
+        
+        // check for wcsession
+        if (WCSession.isSupported()) {
+            print("WATCH: WCSession is supported!")
+            let session = WCSession.default
+            session.delegate = self
+            session.activate()
+        }
+        else {
+            print("WATCH: Does not support WCSession, sorry!")
+        }
+        
         
         // 1. Tell watch how many rows you want
         self.tableViewThing.setNumberOfRows(

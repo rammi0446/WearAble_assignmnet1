@@ -34,6 +34,7 @@
             <objects>
                 <controller id="Rw3-R4-30g" customClass="Page1InterfaceController" customModule="APIDemo_WatchKit_Extension">
                     <items>
+                        <label alignment="left" text="[Phone Message]" id="CHz-j3-kbU"/>
                         <button width="1" alignment="left" title="Show Page 2" id="w7x-IT-AHa">
                             <connections>
                                 <segue destination="AgC-eL-Hgc" kind="modal" id="414-dW-NJz"/>
@@ -55,6 +56,7 @@
                         </table>
                     </items>
                     <connections>
+                        <outlet property="phoneMessageLabel" destination="CHz-j3-kbU" id="AAB-Sp-vnT"/>
                         <outlet property="tableViewThing" destination="jp4-wW-CWb" id="O6D-rD-vJj"/>
                     </connections>
                 </controller>

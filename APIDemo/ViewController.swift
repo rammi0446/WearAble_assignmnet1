@@ -130,9 +130,17 @@ class ViewController: UIViewController, WCSessionDelegate {
         if (WCSession.default.isReachable) {
             // construct the message you want to send
             // the message is in dictionary
-            let message = ["name": "jenelle"]
+            let abc = [
+                "lastName":"albert",
+                "firstName":"danison",
+                "email":"a@gmail.com",
+                "lat":"50.0",
+                "lng":"97.0",
+                "username":"adanison",
+                "password":"0000"
+            ]
             // send the message to the watch
-            WCSession.default.sendMessage(message, replyHandler: nil)
+            WCSession.default.sendMessage(abc, replyHandler: nil)
         }
         else {
             print("PHONE: Cannot find the watch")
